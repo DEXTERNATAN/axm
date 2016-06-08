@@ -1,0 +1,40 @@
+<html>
+	<link rel="stylesheet" type="text/css" href="<?=base_url('assets/css/bootstrap.css')?>">
+<body>
+<?php echo validation_errors(); ?>
+<?php echo form_open('fornecedor/add',array("class"=>"form-horizontal")); ?>
+
+	<div class="form-group">
+		<label for="nome" class="col-md-4 control-label">Nome</label>
+		<div class="col-md-8">
+			<input type="text" name="nome" value="<?php echo $this->input->post('nome'); ?>" class="form-control" id="nome" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="fone" class="col-md-4 control-label">Fone</label>
+		<div class="col-md-8">
+			<input type="text" name="fone" value="<?php echo $this->input->post('fone'); ?>" class="form-control" id="fone" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="email" class="col-md-4 control-label">Email</label>
+		<div class="col-md-8">
+			<input type="text" name="email" value="<?php echo $this->input->post('email'); ?>" class="form-control" id="email" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="cpf" class="col-md-4 control-label">Cpf</label>
+		<div class="col-md-8">
+			<input type="text" name="cpf" value="<?php echo $this->input->post('cpf'); ?>" class="form-control" id="cpf" />
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<div class="col-sm-offset-4 col-sm-8">
+			<button type="submit" class="btn btn-success">Save</button>
+        </div>
+	</div>
+
+<?php echo form_close(); ?>
+</body>
+</html>
