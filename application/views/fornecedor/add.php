@@ -1,49 +1,55 @@
-<form class="form-horizontal" action='' method="POST">
-  <fieldset>
-    <div id="legend">
-      <legend class="">Register</legend>
-    </div>
-    <div class="control-group">
-      <!-- Username -->
-      <label class="control-label"  for="username">Username</label>
-      <div class="controls">
-        <input type="text" id="username" name="username" placeholder="" class="input-xlarge">
-        <p class="help-block">Username can contain any letters or numbers, without spaces</p>
+<!DOCTYPE html>
+<html>
+  <meta charset="UTF-8">
+    <head>
+      <title>Cadastro Fornecedor</title>
+    </head>
+    <body>
+      <div class="container">
+        <div class="row">
+
+        <form class="form-horizontal" action="/axm/fornecedor/add" method="post">
+          <fieldset>
+
+          <legend>Cadastro de Fornecedor</legend>
+
+          <!-- Select Basic -->
+          <?php echo validation_errors(); ?>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="user">Fornecedor</label>
+            <div class="col-md-4">
+              <input class="form-control" type="text" name="nome" placeholder="Nome"/>
+            </div>
+          </div>  
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="user">CPF</label>
+            <div class="col-md-4">
+              <input class="form-control" type="text" name="cpf" placeholder="CPF"/>
+            </div>
+          </div>  
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="user">Email</label>
+            <div class="col-md-4">
+              <input class="form-control" type="email" name="email" placeholder="Email"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="user">Telefone</label>
+            <div class="col-md-4">
+              <input class="form-control" type="text" name="fone" placeholder="xxxxx-xxxx"/>
+            </div>
+          </div>  
+
+            <div align="center">
+              <input type="submit" class="btn btn-primary"></input>
+              <a href="#" class="btn btn-default">aaa</a>
+            </div>
+        </div>
       </div>
-    </div>
- 
-    <div class="control-group">
-      <!-- E-mail -->
-      <label class="control-label" for="email">E-mail</label>
-      <div class="controls">
-        <input type="text" id="email" name="email" placeholder="" class="input-xlarge">
-        <p class="help-block">Please provide your E-mail</p>
-      </div>
-    </div>
- 
-    <div class="control-group">
-      <!-- Password-->
-      <label class="control-label" for="password">Password</label>
-      <div class="controls">
-        <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
-        <p class="help-block">Password should be at least 4 characters</p>
-      </div>
-    </div>
- 
-    <div class="control-group">
-      <!-- Password -->
-      <label class="control-label"  for="password_confirm">Password (Confirm)</label>
-      <div class="controls">
-        <input type="password" id="password_confirm" name="password_confirm" placeholder="" class="input-xlarge">
-        <p class="help-block">Please confirm password</p>
-      </div>
-    </div>
- 
-    <div class="control-group">
-      <!-- Button -->
-      <div class="controls">
-        <button class="btn btn-success">Register</button>
-      </div>
-    </div>
-  </fieldset>
-</form>
+        </fieldset>
+        </form>
+
+          </div>
+        </div>
+    </body>
+</html>

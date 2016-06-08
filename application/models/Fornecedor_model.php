@@ -52,4 +52,16 @@ class Fornecedor_model extends CI_Model
     {
         $this->db->delete('fornecedor',array('id'=>$id));
     }
+
+    function estaSalvo($cpf) {
+        $this->db->where("cpf",$cpf);
+        $query = $this->db->get("fornecedor");
+        
+        if ($query->num_rows() > 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }
