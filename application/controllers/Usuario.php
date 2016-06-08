@@ -89,11 +89,11 @@ class Usuario extends CI_Controller
         else
             show_error('O usuário que você quer deletar não existe.');
     }
-    
+
     public function usuario_existente($usuario) {
 
         if ($this->usuario_model->estaSalvo($usuario)) {
-            $this->form_validation->set_message("usuario_existente", "O nome {$usuario} já está cadastrado!");
+            $this->form_validation->set_message("usuario_existente", "O usuário {$usuario} já está cadastrado! Por favor, escolha outro nome.");
             return FALSE;
         } else {
             return TRUE;

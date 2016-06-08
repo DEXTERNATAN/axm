@@ -18,6 +18,7 @@ class Fornecedor extends CI_Controller
     function index()
     {
         $data['fornecedor'] = $this->Fornecedor_model->get_all_fornecedor();
+        $this->load->view('cabecalho');
         $this->load->view('fornecedor/index',$data);
     }
 
@@ -29,7 +30,7 @@ class Fornecedor extends CI_Controller
         $this->load->library('form_validation');
 
 		$this->form_validation->set_rules('nome','Nome','min_length[3]|required');
-		$this->form_validation->set_rules('cpf','Cpf','required');
+		$this->form_validation->set_rules('cpf','Cpf','required|callback_cpf_existente');
 		$this->form_validation->set_rules('email','Email','required');
 		$this->form_validation->set_rules('fone','Fone','required');
 		
@@ -47,6 +48,7 @@ class Fornecedor extends CI_Controller
         }
         else
         {
+            $this->load->view('cabecalho');
             $this->load->view('fornecedor/add');
         }
     }  
@@ -64,8 +66,12 @@ class Fornecedor extends CI_Controller
             $this->load->library('form_validation');
 
 			$this->form_validation->set_rules('nome','Nome','min_length[3]|required');
-			$this->form_validation->set_rules('cpf','Cpf','required');
-			$this->form_validation->set_rules('email','Email','required');
+			
+            if($fornecedor['cpf'] != $this->input->post('cpf')) {
+                $this->form_validation->set_rules('cpf','Cpf','required|callback_cpf_existente');
+            }
+			
+            $this->form_validation->set_rules('email','Email','required');
 			$this->form_validation->set_rules('fone','Fone','required');
 		
 			if($this->form_validation->run())     
@@ -84,11 +90,12 @@ class Fornecedor extends CI_Controller
             {   
                 $data['fornecedor'] = $this->Fornecedor_model->get_fornecedor($id);
     
+                $this->load->view('cabecalho');
                 $this->load->view('fornecedor/edit',$data);
             }
         }
         else
-            show_error('The fornecedor you are trying to edit does not exist.');
+            show_error('O fornecedor que você está tentando editar não existe.');
     } 
 
     /*
@@ -105,7 +112,18 @@ class Fornecedor extends CI_Controller
             redirect('fornecedor/index');
         }
         else
-            show_error('The fornecedor you are trying to delete does not exist.');
+            show_error('O fornecedor que você está tentando deletar não existe.');
+    }
+
+    public function cpf_existente($cpf) {
+
+        if ($this->Fornecedor_model->estaSalvo($cpf)) {
+            $this->form_validation->set_message("cpf_existente", "O cpf {$cpf} já está cadastrado!");
+            return FALSE;
+        } else {
+            return TRUE;
+        }
+
     }
     
 }

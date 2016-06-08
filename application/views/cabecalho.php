@@ -18,14 +18,9 @@
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="navbar-brand-centered">
 		      <ul class="nav navbar-nav">
-		        <li><a href="#">Produtos</a></li>
-		        <li><a href="#">Fornecedores</a></li>
-		        <li><a href="#">Link</a></li>
-		      </ul>
-		      <ul class="nav navbar-nav navbar-right">
+		        <li><a href="<?=base_url('produto')?>">Produtos</a></li>
+		        <li><a href="<?=base_url('fornecedor')?>">Fornecedores</a></li>
 		        <li><a href="<?=base_url('usuario')?>">Usuário</a></li>
-		        <li><a href="#">Link</a></li>
-		        <li><a href="#">Link</a></li>		        
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->

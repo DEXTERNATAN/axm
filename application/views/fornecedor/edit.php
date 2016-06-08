@@ -1,35 +1,50 @@
-<?php echo validation_errors(); ?>
-<?php echo form_open('fornecedor/edit/'.$fornecedor['id'],array("class"=>"form-horizontal")); ?>
+<!DOCTYPE html>
+<html>
+  <meta charset="UTF-8">
+    <head>
+      <title>Editar Fornecedor</title>
+    </head>
+    <body>
+      <div class="container">
+        <div class="row">
 
-	<div class="form-group">
-		<label for="nome" class="col-md-4 control-label">Nome</label>
-		<div class="col-md-8">
-			<input type="text" name="nome" value="<?php echo ($this->input->post('nome') ? $this->input->post('nome') : $fornecedor['nome']); ?>" class="form-control" id="nome" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="fone" class="col-md-4 control-label">Fone</label>
-		<div class="col-md-8">
-			<input type="text" name="fone" value="<?php echo ($this->input->post('fone') ? $this->input->post('fone') : $fornecedor['fone']); ?>" class="form-control" id="fone" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="email" class="col-md-4 control-label">Email</label>
-		<div class="col-md-8">
-			<input type="text" name="email" value="<?php echo ($this->input->post('email') ? $this->input->post('email') : $fornecedor['email']); ?>" class="form-control" id="email" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="cpf" class="col-md-4 control-label">Cpf</label>
-		<div class="col-md-8">
-			<input type="text" name="cpf" value="<?php echo ($this->input->post('cpf') ? $this->input->post('cpf') : $fornecedor['cpf']); ?>" class="form-control" id="cpf" />
-		</div>
-	</div>
-	
-	<div class="form-group">
-		<div class="col-sm-offset-4 col-sm-8">
-			<button type="submit" class="btn btn-success">Save</button>
+        <form class="form-horizontal" action="/axm/fornecedor/edit/<?=$fornecedor['id']?>" method="post">
+          <fieldset>
+
+          <legend>Editar Fornecedor</legend>
+          <?php echo validation_errors(); ?>
+          <!-- Select Basic -->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="fornecedor">Fornecedor</label>
+            <div class="col-md-4">
+              <input class="form-control" type="text" name="nome" value="<?=$fornecedor['nome']?>"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="fornecedor">CPF</label>
+            <div class="col-md-4">
+              <input class="form-control" type="text" name="cpf" value="<?=$fornecedor['cpf']?>"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="fornecedor">Email</label>
+            <div class="col-md-4">
+              <input class="form-control" type="email" name="email" value="<?=$fornecedor['email']?>"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="fornecedor">Telefone</label>
+            <div class="col-md-4">
+              <input class="form-control" type="text" name="fone" value="<?=$fornecedor['fone']?>"/>
+            </div>
+          </div>
+            <div align="center"><input type="submit" class="btn btn-primary btn-primary"></input></div>
         </div>
-	</div>
-	
-<?php echo form_close(); ?>
+      </div>
+        </fieldset>
+        </form>
+
+          </div>
+        </div>
+    </body>
+</html>
