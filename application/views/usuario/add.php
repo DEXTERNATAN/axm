@@ -13,6 +13,7 @@
           <legend>Cadastro de Usuário</legend>
 
           <!-- Select Basic -->
+          <?php echo validation_errors(); ?>
           <div class="form-group">
             <label class="col-md-4 control-label" for="user">Usuário</label>
             <div class="col-md-4">

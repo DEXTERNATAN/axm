@@ -12,9 +12,6 @@ class Usuario extends CI_Controller
         $this->load->model('Usuario_model');
     } 
 
-    /*
-     * Listing of usuario
-     */
     function index()
     {
         $data['usuario'] = $this->Usuario_model->get_all_usuario();
@@ -22,14 +19,12 @@ class Usuario extends CI_Controller
         $this->load->view('usuario/index',$data);
     }
 
-    /*
-     * Adding a new usuario
-     */
     function add()
     {   
         $this->load->library('form_validation');
-
-        $this->form_validation->set_rules('nome_usuario','Nome Usuario','required');
+        $this->load->model("usuario_model");
+        
+        $this->form_validation->set_rules('nome_usuario','Usuário','required|callback_usuario_existente');
         
         if($this->form_validation->run())     
         {   
@@ -48,20 +43,19 @@ class Usuario extends CI_Controller
         }
     }  
 
-    /*
-     * Editing a usuario
-     */
+
     function edit($id)
     {   
-        // check if the usuario exists before trying to edit it
+        
+        $this->load->model("usuario_model");
         $usuario = $this->Usuario_model->get_usuario($id);
         
         if(isset($usuario['id']))
         {
             $this->load->library('form_validation');
 
-            $this->form_validation->set_rules('nome_usuario','Nome Usuario','required');
-        
+            $this->form_validation->set_rules('nome_usuario','Nome Usuario','required|callback_usuario_existente');
+            
             if($this->form_validation->run())     
             {   
                 $params = array(
@@ -82,14 +76,11 @@ class Usuario extends CI_Controller
             show_error('O usuário não existe.');
     } 
 
-    /*
-     * Deleting usuario
-     */
+
     function remove($id)
     {
         $usuario = $this->Usuario_model->get_usuario($id);
 
-        // check if the usuario exists before trying to delete it
         if(isset($usuario['id']))
         {
             $this->Usuario_model->delete_usuario($id);
@@ -97,6 +88,17 @@ class Usuario extends CI_Controller
         }
         else
             show_error('O usuário que você quer deletar não existe.');
+    }
+    
+    public function usuario_existente($usuario) {
+
+        if ($this->usuario_model->estaSalvo($usuario)) {
+            $this->form_validation->set_message("usuario_existente", "O nome {$usuario} já está cadastrado!");
+            return FALSE;
+        } else {
+            return TRUE;
+        }
+
     }
     
 }

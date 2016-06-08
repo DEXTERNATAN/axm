@@ -11,7 +11,7 @@
           <fieldset>
 
           <legend>Editar Usuário</legend>
-
+          <?php echo validation_errors(); ?>
           <!-- Select Basic -->
           <div class="form-group">
             <label class="col-md-4 control-label" for="user">Usuário</label>
