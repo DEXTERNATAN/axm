@@ -1,5 +1,5 @@
 ###################
-What is CodeIgniter
+prova amx
 ###################
 1- Clonar o projeto dentro do seu servidor local(htdocs,www etc)
 2- executar o dump que está no repositorio
