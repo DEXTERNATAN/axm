@@ -18,6 +18,7 @@ class Produto_estoque extends CI_Controller
     function index()
     {
         $data['produto_estoque'] = $this->Produto_estoque_model->get_all_produto_estoque();
+        $this->load->view('cabecalho');
         $this->load->view('produto_estoque/index',$data);
     }
 

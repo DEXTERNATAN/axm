@@ -19,6 +19,7 @@ class Produto_solicitacao_baixa_estoque_model extends CI_Model
         $this->db->select('baixa.di,baixa.quantidade, u.nome_usuario,u.id as id_usuario,p.id as produto_id,p.nome as produto');
         $this->db->join('usuario u ','u.id = baixa.usuario_id');
         $this->db->join('produto p ','p.id = baixa.produto_id');
+        $this->db->join('compra c ','c.id = p.id');
         return $this->db->get_where('produto_solicitacao_baixa_estoque baixa',array('di'=>$di))->row_array();
     }
     

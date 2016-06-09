@@ -23,8 +23,13 @@ class Produto_estoque_model extends CI_Model
      * Get all produto_estoque
      */
     function get_all_produto_estoque()
-    {
-        return $this->db->get('produto_estoque')->result_array();
+    {   
+        $this->db->select('c.id, f.nome as fornecedor ,pe.quantidade, pe.quantidade_baixa,c.value_product, pe.data_criacao, c.value_product,p.nome as produto');
+        $this->db->join('produto p','p.id = pe.produto_id');
+        $this->db->join('compra c','p.id = c.produto_id');
+        $this->db->join('fornecedor f','c.fornecedor_id = f.id');
+        // $this->db->join('produto_solicitacao_baixa_estoque baixa','baixa.produto_id = p.produto_id');
+        return $this->db->get('produto_estoque pe')->result_array();
     }
     
     /*
