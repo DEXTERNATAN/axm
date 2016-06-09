@@ -16,7 +16,10 @@ class Produto_solicitacao_baixa_estoque_model extends CI_Model
      */
     function get_produto_solicitacao_baixa_estoque($di)
     {
-        return $this->db->get_where('produto_solicitacao_baixa_estoque',array('di'=>$di))->row_array();
+        $this->db->select('baixa.di,baixa.quantidade, u.nome_usuario,u.id as id_usuario,p.id as produto_id,p.nome as produto');
+        $this->db->join('usuario u ','u.id = baixa.usuario_id');
+        $this->db->join('produto p ','p.id = baixa.produto_id');
+        return $this->db->get_where('produto_solicitacao_baixa_estoque baixa',array('di'=>$di))->row_array();
     }
     
     /*
@@ -24,7 +27,12 @@ class Produto_solicitacao_baixa_estoque_model extends CI_Model
      */
     function get_all_produto_solicitacao_baixa_estoque()
     {
-        return $this->db->get('produto_solicitacao_baixa_estoque')->result_array();
+        
+        $this->db->select('baixa.di,baixa.quantidade, u.nome_usuario,produto.nome as produto');
+        $this->db->join('usuario u ','u.id = baixa.usuario_id');
+        $this->db->join('produto','produto.id = baixa.produto_id');
+
+        return $this->db->get('produto_solicitacao_baixa_estoque baixa')->result_array();
     }
     
     /*
@@ -39,9 +47,10 @@ class Produto_solicitacao_baixa_estoque_model extends CI_Model
     /*
      * function to update produto_solicitacao_baixa_estoque
      */
-    function update_produto_solicitacao_baixa_estoque($di,$params)
+    function update_produto_solicitacao_baixa_estoque($id,$params)
     {
-        $this->db->where('di',$id);
+        $this->db->where('di',$id['baixa_id']);
+        $this->db->where('produto_id',$id['produto_id']);
         $this->db->update('produto_solicitacao_baixa_estoque',$params);
     }
     

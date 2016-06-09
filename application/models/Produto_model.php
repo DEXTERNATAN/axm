@@ -16,11 +16,16 @@ class Produto_model extends CI_Model
      */
     function get_produto($id)
     {
+        $this->db->where('id',$id);
+        return $this->db->get('produto')->row_array();
+    }  
+    function get_produto_no_estoque()
+    {
             $this->db->select('p.id,p.nome, c.quantidade, c.value_product, c.fornecedor_id, c.data_criacao');
             $this->db->from('produto p');
             $this->db->join('compra c', 'p.id = c.produto_id');
-            $this->db->where('p.id', $id);
-        return $this->db->get()->row_array();
+            $this->db->where('c.quantidade > 0');
+        return $this->db->get()->result_array();
     }
     
     /*

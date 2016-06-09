@@ -38,7 +38,9 @@ class Compra extends CI_Controller
             $params = array(
 				'quantidade' => $this->input->post('quantidade'),
 				'value_product' => $this->input->post('value_product'),
-				'data_criacao' => $this->input->post('data_criacao'),
+				'data_criacao' => date('Y-m-d'),
+                'fornecedor_id' => $this->input->post('fornecedor'),
+                'produto_id' => $this->input->post('produto')
             );
             
             $compra_id = $this->Compra_model->add_compra($params);
@@ -47,8 +49,10 @@ class Compra extends CI_Controller
         else
         {   
             $this->load->model('Fornecedor_model');
+            $this->load->model('Produto_model');
             $data['fornecedor'] = $this->Fornecedor_model->get_all_fornecedor();
-            
+            $data['produto'] = $this->Produto_model->get_all_produto();
+
             $this->load->view('cabecalho');
             $this->load->view('compra/add',$data);
         }
@@ -88,7 +92,9 @@ class Compra extends CI_Controller
             {   
                 $data['compra'] = $this->Compra_model->get_compra($id);
                 $this->load->model('Fornecedor_model');
+                $this->load->model('Produto_model');
                 $data['fornecedor'] = $this->Fornecedor_model->get_all_fornecedor();
+
                 $this->load->view('cabecalho');
                 $this->load->view('compra/edit',$data);
             }

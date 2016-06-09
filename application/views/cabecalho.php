@@ -25,7 +25,7 @@
 		      <ul class="nav navbar-nav navbar-right">
 		        
 		        <li><a href="<?=base_url('compra')?>">Entrada</a></li>
-		        <li><a href="#">Saída</a></li>		        
+		        <li><a href="<?=base_url('baixa')?>">Saída</a></li>		        
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->

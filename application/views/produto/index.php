@@ -34,7 +34,7 @@
                             <a href="<?php echo site_url('produto/remove/'.$p['id']); ?>" class="btn btn-danger"><em class="fa fa-trash"></em>Excluir</a>
                           </td>
                           <td class="hidden-xs"><?php echo $p['id']; ?></td>
-						<td><?php echo $p['nome']; ?></td>
+						              <td><?php echo $p['nome']; ?></td>
                         </tr>
 						<?php endforeach; ?>
                       </tbody>

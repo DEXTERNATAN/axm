@@ -18,6 +18,7 @@ class Produto extends CI_Controller
     function index()
     {
         $data['produto'] = $this->Produto_model->get_all_produto();
+
         $this->load->view('cabecalho');
         $this->load->view('produto/index',$data);
     }
@@ -31,7 +32,7 @@ class Produto extends CI_Controller
         $this->load->library('form_validation');
         $this->load->model('Compra_model');
 
-        $this->form_validation->set_rules('nome','Nome','min_length[3]|required|callback_produto_existente');
+        $this->form_validation->set_rules('nome','Nome','min_length[3]|required');
         if($this->form_validation->run())     
         {   
             $params = array(

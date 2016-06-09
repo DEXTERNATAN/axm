@@ -2,7 +2,7 @@
 <html>
   <meta charset="UTF-8">
     <head>
-      <title>Editar Produto</title>
+      <title>Adicionar Produto</title>
     </head>
     <body>
       <div class="container">
@@ -14,6 +14,17 @@
           <legend>Entrada de Produto</legend>
           <?php echo validation_errors(); ?>
           <!-- Select Basic -->
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="user">Produto</label>
+            <div class="col-md-4">
+              <select class="form-control" name='produto'>
+                <?php foreach($produto as $p):?>
+                  <option value=<?=$p['id']?>><?=$p['nome']?></option>
+                <?php endforeach;?>
+              </select>
+            </div>           
+          </div> 
           <div class="form-group">
             <label class="col-md-4 control-label" for="user">Quantidade</label>
             <div class="col-md-4">
@@ -23,7 +34,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="user">Preço</label>
             <div class="col-md-4">
-              <input class="form-control" type="text" name="preco" placeholder="Preço"/>
+              <input class="form-control" type="text" name="value_product" placeholder="Preço"/>
             </div>
           </div>
           <div class="form-group">
