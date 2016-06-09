@@ -22,7 +22,6 @@
                 <thead>
                   <tr>
                       <th><em class="fa fa-cog"></em></th>
-                      <th class="hidden-xs">ID</th>
                       <th>Nome</th>
                       <th>CPF</th>
                       <th>Email</th>
@@ -36,11 +35,10 @@
                             <a href="<?php echo site_url('fornecedor/edit/'.$f['id']); ?>" class="btn btn-default"><em class="fa fa-pencil"></em>Editar</a>
                             <a href="<?php echo site_url('fornecedor/remove/'.$f['id']); ?>" class="btn btn-danger"><em class="fa fa-trash"></em>Excluir</a>
                           </td>
-                          <td class="hidden-xs"><?php echo $f['id']; ?></td>
-						<td><?php echo $f['nome']; ?></td>
-						<td><?php echo $f['cpf']; ?></td>
-						<td><?php echo $f['email']; ?></td>
-						<td><?php echo $f['fone']; ?></td>
+              						<td><?php echo $f['nome']; ?></td>
+              						<td><?php echo $f['cpf']; ?></td>
+              						<td><?php echo $f['email']; ?></td>
+              						<td><?php echo $f['fone']; ?></td>
                         </tr>
 						<?php endforeach; ?>
                       </tbody>

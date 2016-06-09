@@ -23,6 +23,7 @@
           </div>  
             <div align="center">
               <input type="submit" class="btn btn-primary"></input>
+              <a href="<?=base_url('produto/index')?>" class="btn btn-default">Voltar</a>
             </div>
         </div>
       </div>

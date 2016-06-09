@@ -42,7 +42,7 @@
 
             <div align="center">
               <input type="submit" class="btn btn-primary"></input>
-              <a href="#" class="btn btn-default">aaa</a>
+              <a href="<?=base_url('fornecedor/index')?>" class="btn btn-default">Voltar</a>
             </div>
         </div>
       </div>

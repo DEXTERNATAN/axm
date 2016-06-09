@@ -38,7 +38,10 @@
               <input class="form-control" type="text" name="fone" value="<?=$fornecedor['fone']?>"/>
             </div>
           </div>
-            <div align="center"><input type="submit" class="btn btn-primary btn-primary"></input></div>
+            <div align="center">
+              <input type="submit" class="btn btn-primary btn-primary"></input>
+              <a href="<?=base_url('fornecedor/index')?>" class="btn btn-default">Voltar</a>
+            </div>
         </div>
       </div>
         </fieldset>

@@ -36,7 +36,7 @@
                           <td class="hidden-xs"><?php echo $pe['id']; ?></td>
 							<td><?php echo $pe['produto']; ?></td>
 							<td><?php echo $pe['fornecedor']; ?></td>
-							<td><?php echo $pe['value_product']; ?></td>
+							<td><?php echo "R$".$pe['value_product']; ?></td>
 							<td><?php echo $pe['quantidade']; ?></td>
 							<td><?php echo $pe['quantidade_baixa']; ?></td>
 							<td><?php echo $pe['data_criacao']; ?></td>

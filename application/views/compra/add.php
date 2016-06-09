@@ -48,7 +48,10 @@
             </div>           
           </div> 
 
-            <div align="center"><input type="submit" class="btn btn-primary btn-primary"></input></div>
+            <div align="center">
+              <input type="submit" class="btn btn-primary btn-primary"></input>
+              <a href="<?=base_url('compra/index')?>" class="btn btn-default">Voltar</a>
+            </div>
         </div>
       </div>
         </fieldset>
