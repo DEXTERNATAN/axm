@@ -18,6 +18,7 @@ class Produto extends CI_Controller
     function index()
     {
         $data['produto'] = $this->Produto_model->get_all_produto();
+        $this->load->view('cabecalho');
         $this->load->view('produto/index',$data);
     }
 
@@ -26,18 +27,25 @@ class Produto extends CI_Controller
      */
     function add()
     {   
-        if(isset($_POST) && count($_POST) > 0)     
+
+        $this->load->library('form_validation');
+        $this->load->model('Compra_model');
+
+        $this->form_validation->set_rules('nome','Nome','min_length[3]|required|callback_produto_existente');
+        if($this->form_validation->run())     
         {   
             $params = array(
-				'nome' => $this->input->post('nome'),
-				'img_path' => $this->input->post('img_path'),
+                'nome' => $this->input->post('nome'),
+                'img_path' => '',
             );
             
             $produto_id = $this->Produto_model->add_produto($params);
+
             redirect('produto/index');
         }
         else
         {
+            $this->load->view('cabecalho');
             $this->load->view('produto/add');
         }
     }  
@@ -49,15 +57,15 @@ class Produto extends CI_Controller
     {   
         // check if the produto exists before trying to edit it
         $produto = $this->Produto_model->get_produto($id);
-        
+        $this->load->model("Compra_model");
         if(isset($produto['id']))
         {
             if(isset($_POST) && count($_POST) > 0)     
             {   
                 $params = array(
-					'nome' => $this->input->post('nome'),
-					'img_path' => $this->input->post('img_path'),
-                );
+                'nome' => $this->input->post('nome'),
+                'img_path' => '',
+            );
 
                 $this->Produto_model->update_produto($id,$params);            
                 redirect('produto/index');
@@ -66,6 +74,7 @@ class Produto extends CI_Controller
             {   
                 $data['produto'] = $this->Produto_model->get_produto($id);
     
+                $this->load->view('cabecalho');
                 $this->load->view('produto/edit',$data);
             }
         }

@@ -13,7 +13,7 @@
                   <h3 class="panel-title">Fornecedores</h3>
                 </div>
                 <div class="col col-xs-6 text-right">
-                  <a href="<?=base_url('/usuario/add')?>" role="button" class="btn btn-sm btn-success btn-create">Adicionar Novo</a>
+                  <a href="<?=base_url('/fornecedor/add')?>" role="button" class="btn btn-sm btn-success btn-create">Adicionar Novo</a>
                 </div>
               </div>
             </div>

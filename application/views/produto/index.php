@@ -1,40 +1,70 @@
 <html>
-	<link rel="stylesheet" type="text/css" href="<?=base_url('assets/css/bootstrap.css')?>">
-<body>
-<?php echo validation_errors(); ?>
-<?php echo form_open('fornecedor/add',array("class"=>"form-horizontal")); ?>
+	<title>Página de Produtos</title>
+	<body>
+		<div class="container">
+      <div class="row">
+    
+        <div class="col-md-10 col-md-offset-1">
 
-	<div class="form-group">
-		<label for="nome" class="col-md-4 control-label">Nome</label>
-		<div class="col-md-8">
-			<input type="text" name="nome" value="<?php echo $this->input->post('nome'); ?>" class="form-control" id="nome" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="fone" class="col-md-4 control-label">Fone</label>
-		<div class="col-md-8">
-			<input type="text" name="fone" value="<?php echo $this->input->post('fone'); ?>" class="form-control" id="fone" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="email" class="col-md-4 control-label">Email</label>
-		<div class="col-md-8">
-			<input type="text" name="email" value="<?php echo $this->input->post('email'); ?>" class="form-control" id="email" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="cpf" class="col-md-4 control-label">Cpf</label>
-		<div class="col-md-8">
-			<input type="text" name="cpf" value="<?php echo $this->input->post('cpf'); ?>" class="form-control" id="cpf" />
-		</div>
-	</div>
-	
-	<div class="form-group">
-		<div class="col-sm-offset-4 col-sm-8">
-			<button type="submit" class="btn btn-success">Save</button>
+          <div class="panel panel-default panel-table">
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col col-xs-6">
+                  <h3 class="panel-title">Produtos</h3>
+                </div>
+                <div class="col col-xs-6 text-right">
+                  <a href="<?=base_url('/produto/add')?>" role="button" class="btn btn-sm btn-success btn-create">Adicionar Novo</a>
+                </div>
+              </div>
+            </div>
+            <div class="panel-body">
+              <table class="table table-striped table-bordered table-list">
+                <thead>
+                  <tr>
+                      <th><em class="fa fa-cog"></em></th>
+                      <th class="hidden-xs">ID</th>
+                      <th>Nome</th>
+                  </tr> 
+                </thead>
+                <tbody>
+                        <tr>
+                          <?php foreach($produto as $p): ?>
+                          <td align="center">
+                            <a href="<?php echo site_url('produto/edit/'.$p['id']); ?>" class="btn btn-default"><em class="fa fa-pencil"></em>Editar</a>
+                            <a href="<?php echo site_url('produto/remove/'.$p['id']); ?>" class="btn btn-danger"><em class="fa fa-trash"></em>Excluir</a>
+                          </td>
+                          <td class="hidden-xs"><?php echo $p['id']; ?></td>
+						<td><?php echo $p['nome']; ?></td>
+                        </tr>
+						<?php endforeach; ?>
+                      </tbody>
+              </table>
+          
+            </div>
+            <!-- <div class="panel-footer">
+              <div class="row">
+                <div class="col col-xs-4">Page 1 of 5
+                </div>
+                <div class="col col-xs-8">
+                  <ul class="pagination hidden-xs pull-right">
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                  </ul>
+                  <ul class="pagination visible-xs pull-right">
+                      <li><a href="#">«</a></li>
+                      <li><a href="#">»</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div> -->
+          </div>
+
         </div>
-	</div>
+      </div>
+    </div>
+	</body>
 
-<?php echo form_close(); ?>
-</body>
 </html>

@@ -22,6 +22,11 @@
 		        <li><a href="<?=base_url('fornecedor')?>">Fornecedores</a></li>
 		        <li><a href="<?=base_url('usuario')?>">Usuário</a></li>
 		      </ul>
+		      <ul class="nav navbar-nav navbar-right">
+		        
+		        <li><a href="<?=base_url('compra')?>">Entrada</a></li>
+		        <li><a href="#">Saída</a></li>		        
+		      </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>

@@ -1,29 +1,59 @@
-<?php echo validation_errors(); ?>
-<?php echo form_open('compra/edit/'.$compra['id'],array("class"=>"form-horizontal")); ?>
+<!DOCTYPE html>
+<html>
+  <meta charset="UTF-8">
+    <head>
+      <title>Editar Compra</title>
+    </head>
+    <body>
+      <div class="container">
+        <div class="row">
 
-	<div class="form-group">
-		<label for="quantidade" class="col-md-4 control-label">Quantidade</label>
-		<div class="col-md-8">
-			<input type="text" name="quantidade" value="<?php echo ($this->input->post('quantidade') ? $this->input->post('quantidade') : $compra['quantidade']); ?>" class="form-control" id="quantidade" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="value_product" class="col-md-4 control-label">Value Product</label>
-		<div class="col-md-8">
-			<input type="text" name="value_product" value="<?php echo ($this->input->post('value_product') ? $this->input->post('value_product') : $compra['value_product']); ?>" class="form-control" id="value_product" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="data_criacao" class="col-md-4 control-label">Data Criacao</label>
-		<div class="col-md-8">
-			<input type="text" name="data_criacao" value="<?php echo ($this->input->post('data_criacao') ? $this->input->post('data_criacao') : $compra['data_criacao']); ?>" class="form-control" id="data_criacao" />
-		</div>
-	</div>
-	
-	<div class="form-group">
-		<div class="col-sm-offset-4 col-sm-8">
-			<button type="submit" class="btn btn-success">Save</button>
+        <form class="form-horizontal" action="/axm/compra/edit/<?=$compra['id']?>" method="post">
+          <fieldset>
+          <input type="hidden" value="<?= $compra['produto_id']?>" name="produto_id">
+          <legend>Editar Entrada de Produto</legend>
+          <?php echo validation_errors(); ?>
+          <!-- Select Basic -->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="user">Produto</label>
+            <div class="col-md-4">
+              <input class="form-control" type="text"  value="<?=$compra['produto']?>"disabled/>
+            </div>
+           </div>
+            <div class="form-group">
+            <label class="col-md-4 control-label" for="user">Quantidade</label>
+            <div class="col-md-4">
+              <input class="form-control" type="text" name="quantidade" value="<?=$compra['quantidade']?>"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="user">Preço</label>
+            <div class="col-md-4">
+              <input class="form-control" type="text" name="value_product" value="<?=$compra['value_product']?>"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="user">Fornecedor</label>
+            <div class="col-md-4">
+              <select class="form-control" name='fornecedor'>
+                <?php foreach($fornecedor as $f):?>
+                  <?php if($f['id'] == $compra['id_fornecedor']): ?>
+                  		<option value=<?=$f['id']?> selected><?=$f['nome']?></option>
+                	<?php else:?>
+                		<option value=<?=$f['id']?>><?=$f['nome']?></option>
+                	<?php endif;?>
+                <?php endforeach;?>
+              </select>
+            </div>           
+          </div> 
+
+            <div align="center"><input type="submit" class="btn btn-primary btn-primary"></input></div>
         </div>
-	</div>
-	
-<?php echo form_close(); ?>
+      </div>
+        </fieldset>
+        </form>
+
+          </div>
+        </div>
+    </body>
+</html>

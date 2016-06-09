@@ -18,6 +18,8 @@ class Compra extends CI_Controller
     function index()
     {
         $data['compra'] = $this->Compra_model->get_all_compra();
+
+        $this->load->view('cabecalho');
         $this->load->view('compra/index',$data);
     }
 
@@ -43,8 +45,12 @@ class Compra extends CI_Controller
             redirect('compra/index');
         }
         else
-        {
-            $this->load->view('compra/add');
+        {   
+            $this->load->model('Fornecedor_model');
+            $data['fornecedor'] = $this->Fornecedor_model->get_all_fornecedor();
+            
+            $this->load->view('cabecalho');
+            $this->load->view('compra/add',$data);
         }
     }  
 
@@ -66,18 +72,24 @@ class Compra extends CI_Controller
 			if($this->form_validation->run())     
             {   
                 $params = array(
+
 					'quantidade' => $this->input->post('quantidade'),
 					'value_product' => $this->input->post('value_product'),
-					'data_criacao' => $this->input->post('data_criacao'),
+                    'fornecedor_id' => $this->input->post('fornecedor')
                 );
-
-                $this->Compra_model->update_compra($id,$params);            
+                $ids = array(
+                    'produto_id' => $this->input->post('produto_id'),
+                    'compra_id' => $id
+                    );
+                $this->Compra_model->update_compra($ids,$params);            
                 redirect('compra/index');
             }
             else
             {   
                 $data['compra'] = $this->Compra_model->get_compra($id);
-    
+                $this->load->model('Fornecedor_model');
+                $data['fornecedor'] = $this->Fornecedor_model->get_all_fornecedor();
+                $this->load->view('cabecalho');
                 $this->load->view('compra/edit',$data);
             }
         }

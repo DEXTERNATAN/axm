@@ -16,7 +16,8 @@ class Compra_model extends CI_Model
      */
     function get_compra($id)
     {
-        return $this->db->get_where('compra',array('id'=>$id))->row_array();
+        $this->db->join('produto','produto.id = c.produto_id');
+        return $this->db->get_where('compra c',array('c.id'=>$id))->row_array();
     }
     
     /*
@@ -24,7 +25,12 @@ class Compra_model extends CI_Model
      */
     function get_all_compra()
     {
-        return $this->db->get('compra')->result_array();
+        $this->db->select('c.id,c.quantidade, c.data_criacao, c.value_product, fornecedor.nome,produto.nome as produto');
+        $this->db->join('fornecedor','fornecedor.id = c.fornecedor_id');
+        $this->db->join('produto','produto.id = c.produto_id');
+
+        return $this->db->get('compra c')->result_array();
+    
     }
     
     /*
@@ -41,7 +47,8 @@ class Compra_model extends CI_Model
      */
     function update_compra($id,$params)
     {
-        $this->db->where('id',$id);
+        $this->db->where('produto_id',$id['produto_id']);
+        $this->db->where('id',$id['compra_id']);
         $this->db->update('compra',$params);
     }
     
