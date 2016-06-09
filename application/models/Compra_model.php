@@ -16,6 +16,8 @@ class Compra_model extends CI_Model
      */
     function get_compra($id)
     {
+        $this->db->select('c.id,c.quantidade, c.data_criacao, c.value_product, c.produto_id, f.id as id_fornecedor, f.nome,produto.nome as produto');
+        $this->db->join('fornecedor f','f.id = c.fornecedor_id');
         $this->db->join('produto','produto.id = c.produto_id');
         return $this->db->get_where('compra c',array('c.id'=>$id))->row_array();
     }
