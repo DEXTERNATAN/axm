@@ -27,12 +27,14 @@ class Baixa extends CI_Controller
      */
     function add()
     {   
-        if(isset($_POST) && count($_POST) > 0)     
+        $produto_id = $this->input->post('produto'); 
+        $this->form_validation->set_rules('quantidade','Quantidade','required|callback_limite_excedido['.$produto_id.']');
+        if($this->form_validation->run())     
         {   
             $params = array(
                 'quantidade' => $this->input->post('quantidade'),
                 'usuario_id' => $this->input->post('usuario'),
-				'produto_id' => $this->input->post('produto'),
+				'produto_id' => $produto_id,
             );
             
             $produto_solicitacao_baixa_estoque_id = $this->Baixa_estoque->add_produto_solicitacao_baixa_estoque($params);
@@ -56,7 +58,7 @@ class Baixa extends CI_Controller
     {   
         // check if the produto_solicitacao_baixa_estoque exists before trying to edit it
         $produto_solicitacao_baixa_estoque = $this->Baixa_estoque->get_produto_solicitacao_baixa_estoque($di);
-        
+
         if(isset($produto_solicitacao_baixa_estoque['di']))
         {
             if(isset($_POST) && count($_POST) > 0)     
@@ -108,6 +110,19 @@ class Baixa extends CI_Controller
         }
         else
             show_error('The produto_solicitacao_baixa_estoque you are trying to delete does not exist.');
+    }
+
+    function limite_excedido($qtd,$produto_id) {
+            $this->load->model("Produto_estoque_model");
+            $query = $this->Produto_estoque_model->limite_excedido($produto_id);
+
+        if ($qtd + $query['quantidade_baixa'] > $query['quantidade']) {
+            $this->form_validation->set_message("limite_excedido", "Nao temos produtos suficientes no estoque");
+            return false;
+        }
+        else {
+            return true;
+        }
     }
     
 }

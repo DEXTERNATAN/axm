@@ -62,15 +62,4 @@ class Compra_model extends CI_Model
         $this->db->delete('compra',array('id'=>$id));
     }
 
-    function estaSalvo($usuario) {
-        $this->db->where("nome_usuario",$usuario);
-        $query = $this->db->get("usuario");
-        
-        if ($query->num_rows() > 0) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
 }

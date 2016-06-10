@@ -58,4 +58,13 @@ class Produto_estoque_model extends CI_Model
     {
         $this->db->delete('produto_estoque',array('id'=>$id));
     }
+
+    function limite_excedido($produto_id)
+    {
+        $this->db->select("quantidade, quantidade_baixa");
+        $this->db->where("produto_id",$produto_id);
+        $query = $this->db->get("produto_estoque")->row_array();
+
+        return $query;
+    }
 }
