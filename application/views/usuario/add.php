@@ -8,7 +8,7 @@
       <div class="container">
         <div class="row">
 
-        <form class="form-horizontal" action="/axm/usuario/add" method="post">
+        <form class="form-horizontal"  method="post">
           <fieldset>
 
           <legend>Cadastro de Usuário</legend>
@@ -23,7 +23,7 @@
           </div>
 
             <div align="center">
-              <input type="submit" class="btn btn-primary btn-primary"></input>
+              <input type="submit" onClick="submitForm()" class="btn btn-primary btn-primary"></input>
               <a href="<?=base_url('usuario/index')?>" class="btn btn-default">Voltar</a>
             </div>
         </div>
@@ -35,3 +35,16 @@
         </div>
     </body>
 </html>
+
+<script type="text/javascript">
+
+  var submitForm = function (){
+    $.ajax({
+      url: '../usuario/add',
+      type: 'post',
+      data: {
+        'nome': $("input[name='nome_usuario']").val()
+      },
+   });
+  }
+</script>

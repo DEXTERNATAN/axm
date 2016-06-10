@@ -61,4 +61,16 @@ class Produto_model extends CI_Model
     {
         $this->db->delete('produto',array('id'=>$id));
     }
+
+    function estaSalvo($produto) {
+        $this->db->where("nome",$produto);
+        $query = $this->db->get("produto");
+        
+        if ($query->num_rows() > 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }

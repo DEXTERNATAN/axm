@@ -32,4 +32,5 @@
 		  </div><!-- /.container-fluid -->
 		</nav>
 </html>
-<script src="/axm/assets/angular/angular.js"></script>
+      <script src="/axm/assets/angular/angular.js"></script>
+      <script src="/axm/assets/js/jquery-3.0.0.js"></script>

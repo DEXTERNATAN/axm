@@ -32,7 +32,7 @@ class Produto extends CI_Controller
         $this->load->library('form_validation');
         $this->load->model('Compra_model');
 
-        $this->form_validation->set_rules('nome','Nome','min_length[3]|required');
+        $this->form_validation->set_rules('nome','Nome','min_length[3]|required|callback_produto_existente');
         if($this->form_validation->run())     
         {   
             $params = array(
@@ -98,6 +98,17 @@ class Produto extends CI_Controller
         }
         else
             show_error('The produto you are trying to delete does not exist.');
+    }
+
+     public function produto_existente($produto) {
+
+        if ($this->Produto_model->estaSalvo($produto)) {
+            $this->form_validation->set_message("produto_existente", "O produto {$produto} já está cadastrado! Por favor, escolha outro nome.");
+            return FALSE;
+        } else {
+            return TRUE;
+        }
+
     }
     
 }

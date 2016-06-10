@@ -8,7 +8,7 @@
       <div class="container">
         <div class="row">
 
-        <form class="form-horizontal" action="/axm/fornecedor/add" method="post">
+        <form class="form-horizontal" method="post">
           <fieldset>
 
           <legend>Cadastro de Fornecedor</legend>
@@ -53,3 +53,19 @@
         </div>
     </body>
 </html>
+
+<script type="text/javascript">
+
+  var submitForm = function (){
+    $.ajax({
+      url: '../fornecedor/add',
+      type: 'post',
+      data: {
+        'nome': $("input[name='nome_usuario']").val(),
+        'cpf': $("input[name='cpf']").val(),
+        'email': $("input[name='email']").val(),
+        'telefone': $("input[name='telefone']").val()
+      },
+   });
+  }
+</script>

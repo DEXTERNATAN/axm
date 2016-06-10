@@ -8,7 +8,7 @@
       <div class="container">
         <div class="row">
 
-        <form class="form-horizontal" action="/axm/produto/add" method="post">
+        <form class="form-horizontal"  method="post">
           <fieldset>
 
           <legend>Cadastro de Produto</legend>
@@ -34,3 +34,16 @@
         </div>
     </body>
 </html>
+
+<script type="text/javascript">
+
+  var submitForm = function (){
+    $.ajax({
+      url: '../produto/add',
+      type: 'post',
+      data: {
+        'nome': $("input[name='nome']").val(),
+      },
+   });
+  }
+</script>
