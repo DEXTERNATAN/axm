@@ -61,11 +61,13 @@ class Baixa extends CI_Controller
 
         if(isset($produto_solicitacao_baixa_estoque['di']))
         {
-            if(isset($_POST) && count($_POST) > 0)     
+            $produto_id = $this->input->post('produto_id');
+            $this->form_validation->set_rules('quantidade','Quantidade','callback_limite_excedido['.$produto_id.']');
+            if($this->form_validation->run())     
             {   
                 $params = array(
                     'quantidade' => $this->input->post('quantidade'),
-                    'produto_id' => $this->input->post('produto_id'),
+                    'produto_id' => $produto_id,
                     'usuario_id' => $this->input->post('usuario'),
                 );
 
